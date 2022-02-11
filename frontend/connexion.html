@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>Let's Chat</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#"
+					><i class="bi bi-chat-quote"></i>&nbsp;Let's Chat!</a
+				>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarColor01"
+					aria-controls="navbarColor01"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarColor01">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link active" href="#">S'inscrire </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Se connecter </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div>
+			<div class="formBloc">
+				<div class="myForm">
+					<form onSubmit="submitHandler">
+						<h3 class="text-center">Connexion</h3>
+						<div class="form-group mb-3">
+							<label for="email">Email</label>
+							<input
+								id="email"
+								class="form-control"
+								type="email"
+								placeholder="nana@diaby.com"
+							/>
+						</div>
+						<div class="form-group mb-3">
+							<label for="mdp">Mot de passe</label>
+							<input id="mdp" class="form-control" type="password" />
+						</div>
+						<div class="form-group mb-3" id="password">
+							<input
+								type="submit"
+								class="form-control text-white mySubmit"
+								value="Se connecter"
+							/>
+						</div>
+						<p class="text-center">
+							Pas encore de compte ?<br />
+							<a href="inscription.html" class="text-primary"> S'inscrire </a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="container">
+				<div class="text-center">Copyright &copy; 2021 Master 1 GDIL UGB</div>
+			</div>
+		</footer>
+	</body>
+</html>
