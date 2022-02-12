@@ -4,6 +4,8 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="img/chat.png" rel="icon" />
+
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/bootstrap-icons.css" />
@@ -43,8 +45,13 @@
 								role="button"
 								aria-haspopup="true"
 								aria-expanded="false"
-								>Mon profile</a
 							>
+								<img
+									src="https://avatars.dicebear.com/api/initials/saly.svg"
+									alt="Mon profile"
+									class="img-fluid avatar-img"
+								/>
+							</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="#">Mon profile</a>
 								<div class="dropdown-divider"></div>
@@ -57,31 +64,44 @@
 		</nav>
 		<section>
 			<main>
-				<div>
-					<input
-						class="form-control"
-						list="datalistOptions"
-						id="exampleDataList"
-						placeholder="Type to search..."
-						style="width: 15%; margin-bottom: 1%"
-					/>
-					<datalist id="datalistOptions">
-						<option value="San Francisco"></option>
-						<option value="New York"></option>
-						<option value="Seattle"></option>
-						<option value="Los Angeles"></option>
-						<option value="Chicago"></option>
-					</datalist>
-				</div>
-				<div class="d-flex align-items-start">
+				<div class="row" style="margin-right: 10px; margin-left: 10px">
 					<div
-						class="nav flex-column nav-pills me-3"
+						class="nav flex-column nav-pills me-3 col-3"
 						id="v-pills-tab"
 						role="tablist"
 						aria-orientation="vertical"
 					>
+						<div>
+							<input
+								class="form-control"
+								list="datalistOptions"
+								id="exampleDataList"
+								placeholder="Type to search..."
+								style="margin-bottom: 1%"
+							/>
+							<datalist id="datalistOptions">
+								<option value="San Francisco"></option>
+								<option value="New York"></option>
+								<option value="Seattle"></option>
+								<option value="Los Angeles"></option>
+								<option value="Chicago"></option>
+							</datalist>
+						</div>
 						<div
 							class="nav-link active tab-nav"
+							id="v-pills-groupe-tab"
+							data-bs-toggle="pill"
+							data-bs-target="#v-pills-groupe"
+							type="button"
+							role="tab"
+							aria-controls="v-pills-groupe"
+							aria-selected="true"
+						>
+							Groupe chat
+						</div>
+
+						<div
+							class="nav-link tab-nav"
 							id="v-pills-home-tab"
 							data-bs-toggle="pill"
 							data-bs-target="#v-pills-home"
@@ -90,7 +110,26 @@
 							aria-controls="v-pills-home"
 							aria-selected="true"
 						>
-							Salyyyyyyyyyyyyy <button class="btn text-secondary"><i class="bi bi-three-dots-vertical"></i></button>
+							<img
+								src="https://avatars.dicebear.com/api/initials/saly.svg"
+								alt="Mon profile"
+								class="img-fluid avatar-img"
+							/>
+							Salyyyyyyyyyyyyy
+							<div class="dropdown">
+								<button
+									class="btn text-secondary dropdown-toggle"
+									type="button"
+									id="dropdownMenuButton1"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
+								></button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<li>
+										<a class="dropdown-item" href="#">Supprimer discussion</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div
 							class="nav-link tab-nav"
@@ -102,7 +141,26 @@
 							aria-controls="v-pills-profile"
 							aria-selected="false"
 						>
+							<img
+								src="https://avatars.dicebear.com/api/initials/fatou.svg"
+								alt="Mon profile"
+								class="img-fluid avatar-img"
+							/>
 							Fatou
+							<div class="dropdown">
+								<button
+									class="btn text-secondary dropdown-toggle"
+									type="button"
+									id="dropdownMenuButton2"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
+								></button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+									<li>
+										<a class="dropdown-item" href="#">Supprimer discussion</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div
 							class="nav-link tab-nav"
@@ -114,18 +172,332 @@
 							aria-controls="v-pills-messages"
 							aria-selected="false"
 						>
+							<img
+								src="https://avatars.dicebear.com/api/initials/aicha.svg"
+								alt="Mon profile"
+								class="img-fluid avatar-img"
+							/>
 							Aicha
+							<div class="dropdown">
+								<button
+									class="btn text-secondary dropdown-toggle"
+									type="button"
+									id="dropdownMenuButton3"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
+								></button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+									<li>
+										<a class="dropdown-item" href="#">Supprimer discussion</a>
+									</li>
+								</ul>
+							</div>
 						</div>
-						
 					</div>
-					<div class="tab-content" id="v-pills-tabContent">
+					<div class="tab-content col-8" id="v-pills-tabContent">
 						<div
 							class="tab-pane fade show active"
+							id="v-pills-groupe"
+							role="tabpanel"
+							aria-labelledby="v-pills-groupe-tab"
+						>
+							<div class="infos-dest">Groupe chat</div>
+							<div class="bloc-msgs">
+								<div class="bloc-msg">
+									<div class="msg-sent msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="bloc-msg">
+									<div class="msg-recu msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="bloc-msg">
+									<div class="msg-recu msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="bloc-msg">
+									<div class="msg-sent msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-msg">
+								<form action="" class="row">
+									<div class="form-floating col-9">
+										<input
+											type="text"
+											class="form-control"
+											id="floatingInput"
+											placeholder="saisissez votre message ici"
+										/>
+										<label for="floatingInput"
+											>Saisissez votre message ici</label
+										>
+									</div>
+									<div class="col-3">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											value="Envoyer"
+										/>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div
+							class="tab-pane fade"
 							id="v-pills-home"
 							role="tabpanel"
 							aria-labelledby="v-pills-home-tab"
 						>
-							hi saly
+							<div class="infos-dest">Saly - saly@lysa.com</div>
+							<div class="bloc-msgs">
+								<div class="bloc-msg">
+									<div class="msg-sent msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="bloc-msg">
+									<div class="msg-recu msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="bloc-msg">
+									<div class="msg-recu msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="bloc-msg">
+									<div class="msg-sent msg d-flex align-content-center">
+										hi aysha
+										<sub>12/02/2022 08:42</sub>
+										<div class="dropdown">
+											<button
+												class="btn text-secondary dropdown-toggle"
+												type="button"
+												id="dropdownMenuButton1"
+												data-bs-toggle="dropdown"
+												aria-expanded="false"
+											></button>
+											<ul
+												class="dropdown-menu"
+												aria-labelledby="dropdownMenuButton1"
+											>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Supprimer message</a
+													>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#"
+														>Modifier message</a
+													>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-msg">
+								<form action="" class="row">
+									<div class="form-floating col-9">
+										<input
+											type="text"
+											class="form-control"
+											id="floatingInput"
+											placeholder="saisissez votre message ici"
+										/>
+										<label for="floatingInput"
+											>Saisissez votre message ici</label
+										>
+									</div>
+									<div class="col-3">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											value="Envoyer"
+										/>
+									</div>
+								</form>
+							</div>
 						</div>
 						<div
 							class="tab-pane fade"
@@ -143,8 +515,6 @@
 						>
 							hi aicha
 						</div>
-						
-						</div>
 					</div>
 				</div>
 			</main>
@@ -154,7 +524,7 @@
 				<div class="text-center">Copyright &copy; 2021 Master 1 GDIL UGB</div>
 			</div>
 		</footer>
-		<script src="js/bootstrap.min.js"></script>
 		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>
