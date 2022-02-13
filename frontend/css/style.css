@@ -88,6 +88,7 @@ main {
 
 .nav-pills {
 	height: 85vh;
+	flex-wrap: nowrap;
 	overflow-y: scroll;
 }
 
@@ -132,12 +133,17 @@ main {
 */
 
 .form-msg {
-	width: 100%;
 	position: sticky;
 	bottom: 0px;
 }
 
 .avatar-img {
 	width: 30px;
+}
+
+@media (max-width: 768px) {
+	.nom-contact {
+		display: none;
+	}
 }
 /************************************ FIN PAGE PRINCIPALE **************************************************/
