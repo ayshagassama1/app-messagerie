@@ -1,0 +1,22 @@
+{
+	"utilisateurs": [
+		{
+			"id": 1,
+			"prenom": "fatou",
+			"nom": "dia",
+			"email": "fatou@dia.com"
+		},
+		{
+			"id": 2,
+			"prenom": "saly",
+			"nom": "samake",
+			"email": "saly@samake.com"
+		},
+		{
+			"id": 3,
+			"prenom": "aysha",
+			"nom": "gassama",
+			"email": "aysha@gassama.com"
+		}
+	]
+}
