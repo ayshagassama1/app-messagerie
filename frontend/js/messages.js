@@ -154,7 +154,7 @@ function creerTabs() {
 }
 
 function creerBlocMsg(id, contenu, date, idTab, type) {
-	console.log("v-pills-" + idTab);
+	//console.log("v-pills-" + idTab);
 	let tabPane = document.getElementById("v-pills-" + idTab);
 	let blocMsgs = tabPane.getElementsByClassName("bloc-msgs")[0];
 	let blocMsg = document.createElement("div");
@@ -166,7 +166,6 @@ function creerBlocMsg(id, contenu, date, idTab, type) {
 	let ddLiSup = document.createElement("li");
 	let ddLiModif = document.createElement("li");
 	let supLink = document.createElement("a");
-	let modifLink = document.createElement("a");
 
 	//date du message
 	sub.textContent = date;
@@ -181,16 +180,11 @@ function creerBlocMsg(id, contenu, date, idTab, type) {
 	//lien de suppression du message
 	supLink.setAttribute("class", "dropdown-item");
 	supLink.setAttribute("href", "#");
+	supLink.setAttribute("onclick", "supprimer(" + id + ")");
 	supLink.textContent = "Supprimer message";
-
-	//lien de modification du message
-	modifLink.setAttribute("class", "dropdown-item");
-	modifLink.setAttribute("href", "#");
-	modifLink.textContent = "Modifier message";
 
 	//on append les liens de supression et de modification à des list items
 	ddLiSup.appendChild(supLink);
-	ddLiModif.appendChild(modifLink);
 
 	//liste des actions à faire avec le message
 	ddUl.setAttribute("class", "dropdown-menu");
@@ -219,10 +213,10 @@ function creerBlocMsg(id, contenu, date, idTab, type) {
 function afficherMessages() {
 	let msgs = listeMsgs;
 
-	console.log(msgs);
+	//console.log(msgs);
 	msgs.messages.forEach((msg) => {
 		msg = JSON.parse(msg);
-		console.log(msg);
+		//console.log(msg);
 		let idTab;
 		let type;
 		if (msg.dest == 1) {
@@ -242,7 +236,7 @@ function afficherMessages() {
 			}
 		}
 
-		console.log(msg.id, msg.contenu, msg.date, idTab, type);
+		//console.log(msg.id, msg.contenu, msg.date, idTab, type);
 		creerBlocMsg(msg.id, msg.contenu, msg.date, idTab, type);
 	});
 }
@@ -260,3 +254,11 @@ fetch("http://localhost/app-messagerie/backend/utilisateurs.php")
 				afficherMessages();
 			});
 	});
+
+fetch("http://localhost/app-messagerie/backend/utilisateurs.php", {
+	method: "POST",
+	headers: { "Content-Type": "application/json" },
+	body: { id: idUser },
+})
+	.then((res) => res.json())
+	.then((res) => console.log(res));

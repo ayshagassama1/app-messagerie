@@ -36,6 +36,8 @@ while($reponse = $query->fetch())
 }
 
 echo(json_encode(array("messages"=>$messages))); // print array
-
+if(isset($_POST['id'])){
+    echo $_POST['id'];
+}
 
 
