@@ -8,6 +8,6 @@ function saisie(id){
   httpr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
   httpr.send("contenu="+contenue+"&destinataire="+id+"&datec="+mydate);
 }
-function supprimer(id){
-
+function supprimer(){
+  
 }
