@@ -8,7 +8,7 @@ $dat=$_POST['date'];
 $sql="INSERT INTO message(destinataire,contenu,origine,date) VALUES ('$name','$conte',$idUser,'$dat');";
 $_result=mysqli_query($_conx,$sql);
 }
-if(isset($_POST['id'])){
+else{
 $ide=$_POST['id'];
 $sql="DELETE FROM message WHERE id='$ide'";
 $_result=mysqli_query($_conx,$sql);}
