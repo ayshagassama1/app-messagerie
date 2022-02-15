@@ -8,6 +8,7 @@
 
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/authentification.js"></script>
 		<title>Let's Chat</title>
 	</head>
 	<body>
@@ -41,39 +42,56 @@
 			</div>
 		</nav>
 		<div>
+		<div class="msg mb-4" id="ins"></div>
 			<div class="formBloc">
 				<div class="myForm">
-					<form onSubmit="submitHandler">
+					<form onsubmit="register()">
 						<h3 class="text-center">Inscription</h3>
 						<div class="form-group mb-3">
-							<label for="prenom">Prénom</label>
+							<label for="">Prénom</label>
 							<input
 								type="text"
 								class="form-control"
 								id="prenom"
+								name="prenom"
 								placeholder="nana"
+							
 							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="nom">Nom</label>
-							<input id="nom" class="form-control" type="text" placeholder="diaby" />
+							<label for="">Nom</label>
+							<input 
+							id="nom" 
+							name="nom"
+							class="form-control" 
+							type="text"
+							 placeholder="diaby" />
 						</div>
 						<div class="form-group mb-3">
-							<label for="email">Email</label>
+							<label for="">Email</label>
 							<input
 								id="email"
+								name="email"
 								class="form-control"
 								type="email"
 								placeholder="nana@diaby.com"
 							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="mdp">Mot de passe</label>
-							<input id="mdp" class="form-control" type="password" />
+							<label for="">Mot de passe</label>
+							<input 
+							id="mdp" 
+							name="mdp"
+							class="form-control"
+							 type="password" />
 						</div>
 						<div class="form-group mb-3">
-							<label for="cmdp">Confirmer mot de passe</label>
-							<input id="cmdp" class="form-control" type="password" />
+							<label for="">Confirmer mot de passe</label>
+							<input
+							 id="cmdp"
+							 name="cmdp"
+							  class="form-control" 
+							  type="password" />
 						</div>
 						<div class="form-group mb-3" id="password">
 							<input
@@ -95,5 +113,6 @@
 				<div class="text-center">Copyright &copy; 2021 Master 1 GDIL UGB</div>
 			</div>
 		</footer>
+		
 	</body>
 </html>
