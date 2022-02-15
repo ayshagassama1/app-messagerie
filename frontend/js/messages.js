@@ -171,6 +171,7 @@ function creerTabPane(id, email, nom, prenom) {
 	formSubmitDiv.appendChild(formSubmit);
 
 	form.setAttribute("class", "row");
+	form.setAttribute("id", "form-" + id);
 	form.setAttribute("method", "post");
 	form.setAttribute("onsubmit", "saisie(" + id + ")");
 	form.appendChild(formFloating);
