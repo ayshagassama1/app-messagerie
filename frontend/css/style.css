@@ -33,6 +33,9 @@
 	align-self: center;
 }
 
+footer {
+	background-color: #c5c5c5;
+}
 /************************************ FIN LANDING PAGE/INDEX **************************************************/
 
 /************************************ DEBUT FORMULAIRE **************************************************/
@@ -66,7 +69,7 @@
 }
 /************************************ FIN FORMULAIRE **************************************************/
 
-/************************************ DEBUT FORMULAIRE **************************************************/
+/************************************ DEBUT PAGE PRINCIPALE **************************************************/
 main {
 	margin-top: 1%;
 }
@@ -76,4 +79,72 @@ main {
 	justify-content: space-between;
 	justify-items: center;
 }
-/************************************ DEBUT FORMULAIRE **************************************************/
+
+.tab-content {
+	height: 85vh;
+	overflow-y: scroll;
+	background-color: #f5dff3;
+}
+
+.nav-pills {
+	height: 85vh;
+	flex-wrap: nowrap;
+	overflow-y: scroll;
+}
+
+.msg-sent {
+	float: right;
+	background-color: #593196;
+	border-radius: 8px 9px 0px 8px;
+}
+
+.msg-recu {
+	float: left;
+	background-color: #f3008e;
+	border-radius: 9px 8px 8px 0px;
+}
+
+.msg {
+	color: white;
+	padding: 5px;
+	margin: 5px;
+	max-width: fit-content;
+}
+
+.infos-dest {
+	background-color: #593196;
+	width: 100%;
+	color: #ffff;
+	font-size: 2em;
+	text-align: center;
+}
+
+.bloc-msgs {
+	display: flex;
+	flex-direction: column;
+}
+
+/*.tab-pane .active {
+	height: 100%;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: space-between;
+}
+*/
+
+.form-msg {
+	position: sticky;
+	bottom: 0px;
+	margin-top: 5px;
+}
+
+.avatar-img {
+	width: 30px;
+}
+
+@media (max-width: 768px) {
+	.nom-contact {
+		display: none;
+	}
+}
+/************************************ FIN PAGE PRINCIPALE **************************************************/
