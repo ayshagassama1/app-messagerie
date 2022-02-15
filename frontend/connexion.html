@@ -8,6 +8,7 @@
 
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/authentification.js"></script>
 		<title>Let's Chat</title>
 	</head>
 	<body>
@@ -34,7 +35,7 @@
 							<a class="nav-link active" href="#">S'inscrire </a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Se connecter </a>
+							<a class="nav-link" href="#"> se déconnecter </a>
 						</li>
 					</ul>
 				</div>
@@ -43,20 +44,23 @@
 		<div>
 			<div class="formBloc">
 				<div class="myForm">
-					<form onSubmit="submitHandler">
+					<form onSubmit="login()">
 						<h3 class="text-center">Connexion</h3>
 						<div class="form-group mb-3">
-							<label for="email">Email</label>
+							<label for="">Email</label>
 							<input
 								id="email"
+								name="email"
 								class="form-control"
 								type="email"
 								placeholder="nana@diaby.com"
 							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="mdp">Mot de passe</label>
-							<input id="mdp" class="form-control" type="password" />
+							<label for="">Mot de passe</label>
+							<input id="mdp"  
+							name="mdp"
+							class="form-control" type="password" />
 						</div>
 						<div class="form-group mb-3" id="password">
 							<input

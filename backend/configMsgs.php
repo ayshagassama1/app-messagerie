@@ -20,9 +20,21 @@ $_POST["idUser"] = 2;
 $idUser = $_POST["idUser"];
 
 //renvoie l'id de l'utilisateur
-if(isset($_POST["getIdUser"]))
+if(isset($_POST["getInfosUser"]))
 {
-    echo $idUser;
+    $query = $bdd->prepare('SELECT id, prenom, nom, email from utilisateur WHERE id=?');
+    $query->execute(array($idUser));
+    
+    $reponse = $query->fetch();
+  
+    $user = array(
+        "id" => $reponse["id"],
+        "nom" => $reponse["nom"],
+        "prenom" => $reponse["prenom"],
+        "email" => $reponse["email"]
+    );
+
+    echo(json_encode($user));
 }
 
 //renvoie la liste des contacts de l'utilisateur connecté càd les personnes avec qui il a déjà échangé
