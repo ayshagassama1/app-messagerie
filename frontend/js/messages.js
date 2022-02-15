@@ -1,6 +1,35 @@
 let listeUtilisateurs;
 let listeMsgs;
-let idUser = 2;
+let idUser;
+let listeContacts;
+let i = 0;
+function initialisation() {
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = () => {
+		if (xhr.readyState == 4) {
+			idUser = xhr.responseText;
+		}
+	};
+	xhr.open("post", "http://localhost/app-messagerie/backend/configMsgs.php", false);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("getIdUser=1");
+
+	fetch("http://localhost/app-messagerie/backend/utilisateurs.php")
+		.then((res) => res.json())
+		.then((res) => {
+			listeUtilisateurs = res;
+			rechercheUtilisateur();
+			creerTabs(listeUtilisateurs);
+			fetch("http://localhost/app-messagerie/backend/messages.php")
+				.then((res) => res.json())
+				.then((res) => {
+					listeMsgs = res;
+					afficherMessages();
+					setInterval(refreshInfos(), 100);
+				});
+		});
+	getListContacts();
+}
 
 function rechercheUtilisateur() {
 	let datalist = document.getElementById("datalistOptions");
@@ -121,6 +150,8 @@ function creerTabPane(id, email, nom, prenom) {
 	formSubmitDiv.appendChild(formSubmit);
 
 	form.setAttribute("class", "row");
+	form.setAttribute("method", "post");
+	form.setAttribute("onsubmit", "saisie(" + id + ")");
 	form.appendChild(formFloating);
 	form.appendChild(formSubmitDiv);
 
@@ -141,15 +172,17 @@ function creerTabPane(id, email, nom, prenom) {
 	return newTabPane;
 }
 
-function creerTabs() {
+function creerTabs(list) {
 	let tabContent = document.getElementById("v-pills-tabContent");
-	let users = listeUtilisateurs;
+	let users = list;
 
 	users.utilisateurs.forEach((element) => {
-		element = JSON.parse(element);
-		let newTab = creerTabPane(element.id, element.email, element.nom, element.prenom);
+		if (!document.getElementById("v-pills-" + element.id + "-tab")) {
+			element = JSON.parse(element);
+			let newTab = creerTabPane(element.id, element.email, element.nom, element.prenom);
 
-		tabContent.appendChild(newTab);
+			tabContent.appendChild(newTab);
+		}
 	});
 }
 
@@ -204,6 +237,33 @@ function creerBlocMsg(id, contenu, date, idTab, type) {
 
 	//conteneur du msg
 	blocMsg.setAttribute("class", "bloc-msg");
+	blocMsg.setAttribute("id", "bloc-msg-" + id);
+	blocMsg.appendChild(msg);
+
+	//met le conteneur du msg dans le conteneur des conteneurs de messages
+	blocMsgs.appendChild(blocMsg);
+}
+
+function creerBlocMsgGroupe(id, contenu, date, nom, prenom, idTab, type) {
+	//console.log("v-pills-" + idTab);
+	let tabPane = document.getElementById("v-pills-" + idTab);
+	let blocMsgs = tabPane.getElementsByClassName("bloc-msgs")[0];
+	let blocMsg = document.createElement("div");
+	let msg = document.createElement("div");
+	let sub = document.createElement("sub");
+
+	//date du message
+	sub.textContent = prenom + " " + nom + " " + date;
+
+	//message proprement dit. regroupe le contenu du msg, la date et le dropdown
+	msg.textContent = contenu;
+	msg.setAttribute("class", type + " msg d-flex align-content-center");
+	//msg.appendChild(nomOrigine);
+	msg.appendChild(sub);
+
+	//conteneur du msg
+	blocMsg.setAttribute("class", "bloc-msg");
+	blocMsg.setAttribute("id", "bloc-msg-" + id);
 	blocMsg.appendChild(msg);
 
 	//met le conteneur du msg dans le conteneur des conteneurs de messages
@@ -212,53 +272,77 @@ function creerBlocMsg(id, contenu, date, idTab, type) {
 
 function afficherMessages() {
 	let msgs = listeMsgs;
-
-	//console.log(msgs);
+	//on parcours la liste des msgs
 	msgs.messages.forEach((msg) => {
+		//on converti le message en objet JS
 		msg = JSON.parse(msg);
-		//console.log(msg);
-		let idTab;
-		let type;
-		if (msg.dest == 1) {
-			idTab = "groupe";
-			if (msg.origine == idUser) {
-				type = "msg-sent";
+		let idTab; //va recevoir l'id du tab-pane dans lequel on doit mettre le message
+		let type; //type de message, reçu ou envoyé
+		//si le message n'a pas déjà été affiché dans le document
+		if (!document.getElementById("bloc-msg-" + msg.id)) {
+			//si le message est un message dont le destinataire est groupe on le met dans tab-groupe
+			if (msg.dest == 1) {
+				idTab = "groupe";
+				//si c'est l'utilisateur qui l'a envoyé dans le groupe on donne la classe msg-sent au msg
+				if (msg.origine == idUser) {
+					type = "msg-sent";
+				} else {
+					//sinon on le classe comme msg reçu
+					type = "msg-recu";
+				}
+				//on crée un bloc msg groupe et on le colle au tab-pane groupe
+				creerBlocMsgGroupe(msg.id, msg.contenu, msg.date, msg.nom, msg.prenom, idTab, type);
 			} else {
-				type = "msg-recu";
-			}
-		} else {
-			if (msg.dest == idUser) {
-				idTab = msg.origine;
-				type = "msg-recu";
-			} else {
-				idTab = msg.dest;
-				type = "msg-sent";
+				//sinon
+				//si le destinataire du msg est l'utilisateur connecté on le met dans le tab du contact
+				// correspondant et on lui donne la classe msg-recu
+				if (msg.dest == idUser) {
+					idTab = msg.origine;
+					type = "msg-recu";
+				} else {
+					idTab = msg.dest;
+					type = "msg-sent";
+				}
+				creerBlocMsg(msg.id, msg.contenu, msg.date, idTab, type);
 			}
 		}
-
-		//console.log(msg.id, msg.contenu, msg.date, idTab, type);
-		creerBlocMsg(msg.id, msg.contenu, msg.date, idTab, type);
 	});
 }
 
-fetch("http://localhost/app-messagerie/backend/utilisateurs.php")
-	.then((res) => res.json())
-	.then((res) => {
-		listeUtilisateurs = res;
-		rechercheUtilisateur();
-		creerTabs();
-		fetch("http://localhost/app-messagerie/backend/messages.php")
-			.then((res) => res.json())
-			.then((res) => {
-				listeMsgs = res;
-				afficherMessages();
-			});
-	});
+//récupère la liste des utilisateurs avec qui l'utilisateur connecté a déjà échangé
+function getListContacts() {
+	let xhrUsers = new XMLHttpRequest();
+	xhrUsers.onreadystatechange = () => {
+		if (xhrUsers.readyState == 4) {
+			listeContacts = xhrUsers.responseText;
+		}
+	};
+	xhrUsers.open("post", "http://localhost/app-messagerie/backend/configMsgs.php", false);
+	xhrUsers.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhrUsers.send("getListContacts=1");
 
-fetch("http://localhost/app-messagerie/backend/utilisateurs.php", {
-	method: "POST",
-	headers: { "Content-Type": "application/json" },
-	body: { id: idUser },
-})
-	.then((res) => res.json())
-	.then((res) => console.log(res));
+	listeContacts = JSON.parse(listeContacts);
+	//pour chaque contact on crée un bouton de navigation pour afficher sa page de messages
+	listeContacts.utilisateurs.forEach((element) => {
+		element = JSON.parse(element);
+		if (!document.getElementById("v-pills-" + element.id + "-tab")) {
+			ajouterUtilisateur(element.id, element.email, element.prenom, element.nom);
+		}
+	});
+}
+
+function refreshInfos() {
+	getListContacts();
+	creerTabs(listeContacts);
+	afficherMessages();
+	console.log("refreshing" + i);
+	i++;
+}
+
+$(document).ready(() => {
+	initialisation();
+
+	//while (!listeContacts || !idUser || !listeMsgs);
+	//if (listeContacts && idUser && listeMsgs) setInterval(refreshInfos(), 1);
+});
+//setInterval(() => console.log(i++), 100);

@@ -135,6 +135,7 @@ main {
 .form-msg {
 	position: sticky;
 	bottom: 0px;
+	margin-top: 5px;
 }
 
 .avatar-img {
