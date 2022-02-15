@@ -1,25 +1,24 @@
 <?php
 
-function connectionBD()
-{
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=messagerie;charset=utf8', 'root', '');
-    }
-    catch (Exception $e)
-    {
-            die('Erreur : ' . $e->getMessage());
-    }
-    return $bdd;
-}
+require "authentification.php";
 
-$bdd = connectionBD();
+$bdd = connexionBD();
 
-$_POST["idUser"] = 2;
-
-$idUser = $_POST["idUser"];
+//$_POST["idUser"] = 2;
+if(isset($_SESSION["id"]))
+    $idUser = $_SESSION["id"];
 
 //renvoie l'id de l'utilisateur
+if(isset($_POST["getIdUser"]))
+{
+    
+    if(isset($_SESSION["id"]))
+        echo($_SESSION["id"]);
+    else
+        echo 0;
+}
+
+//renvoie les informations sur l'utilisateur
 if(isset($_POST["getInfosUser"]))
 {
     $query = $bdd->prepare('SELECT id, prenom, nom, email from utilisateur WHERE id=?');

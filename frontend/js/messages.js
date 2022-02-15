@@ -6,6 +6,26 @@ let listeContacts;
 let i = 0;
 let refresh;
 
+//vérifie si l'utilisateur est normalement connecté ou s'il a directement utilisé le lien de la page
+//sans se connecter
+function verifUtilisateur() {
+	let xhr = new XMLHttpRequest();
+	let idUser;
+	xhr.onreadystatechange = () => {
+		if (xhr.readyState == 4) {
+			idUser = xhr.responseText;
+		}
+	};
+	xhr.open("post", "http://localhost/app-messagerie/backend/configMsgs.php", false);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("getIdUser=1");
+
+	if (idUser == 0) {
+		console.log(idUser);
+		document.location.replace("index.html");
+	}
+}
+
 function initialisation() {
 	let xhr = new XMLHttpRequest();
 	let infosUser;
@@ -20,7 +40,7 @@ function initialisation() {
 	infosUser = JSON.parse(infosUser);
 	idUser = infosUser.id;
 	nomUser = infosUser.prenom + infosUser.nom;
-	setInterval(test(), 1000);
+
 	fetch("http://localhost/app-messagerie/backend/utilisateurs.php")
 		.then((res) => res.json())
 		.then((res) => {
@@ -341,30 +361,16 @@ function recupererMsgs() {
 		});
 }
 
-function refreshInfos() {
-	console.log(i++);
-
-	console.log("debut recupération liste contacts");
-	getListContacts();
-	console.log("fin recupération liste contacts");
-	console.log("debut creation tab");
-	creerTabs(listeContacts);
-	console.log("fin creation tab");
-	console.log("debut affichage msgs");
-	recupererMsgs();
-	console.log("fin affichage msgs");
-	console.log("refreshing" + i);
-	i++;
-}
-
-function test() {
-	console.log(i++);
-}
-
 $(document).ready(() => {
+	verifUtilisateur();
 	initialisation();
-	//while (!listeContacts || !idUser || !listeMsgs);
-	//if (listeContacts && idUser && listeMsgs) setInterval(refreshInfos(), 1);
+	//on récupère la liste des "contacts" puis on crée les tabs qui n'ont pas été créé et enfin on affiche
+	//les messages dans les tab correspondants chaque 1 seconde
+	setInterval(() => {
+		getListContacts();
+		creerTabs(listeContacts);
+		recupererMsgs();
+		console.log("refreshing" + i);
+		i++;
+	}, 2000);
 });
-//refresh();
-//setInterval(() => console.log(i++), 100);
