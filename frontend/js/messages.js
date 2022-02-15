@@ -351,5 +351,5 @@ $(document).ready(() => {
 		recupererMsgs();
 		console.log("refreshing" + i);
 		i++;
-	}, 1000);
+	}, 2000);
 });
