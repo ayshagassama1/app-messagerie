@@ -12,6 +12,8 @@ function supprimer(id){
   var httpre= new XMLHttpRequest();
   httpre.open("POST","http://localhost/app-messagerie/backend/saisie.php",true);
   httpre.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+  //var m=document.getElementById(id);
   httpre.send("id="+id);
 
 }

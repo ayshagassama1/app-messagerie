@@ -1,7 +1,7 @@
 <?php
 
 $_conx=mysqli_connect("localhost","root","","messagerie");
-if(isset($_POST['destinataire']) && isset($_POST['contenu']) && isset($_POST['date'])){
+if(isset($_POST['destinataire']&&$_POST['contenu']&&$_POST['date'])){
 $name=$_POST['destinataire'];
 $conte=$_POST['contenu'];
 $dat=$_POST['date'];

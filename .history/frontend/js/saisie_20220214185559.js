@@ -8,10 +8,7 @@ function saisie(id){
   httpr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
   httpr.send("contenu="+contenue+"&destinataire="+id+"&date="+mydate);
 }
-function supprimer(id){
+/*function supprimer(id){
   var httpre= new XMLHttpRequest();
-  httpre.open("POST","http://localhost/app-messagerie/backend/saisie.php",true);
-  httpre.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-  httpre.send("id="+id);
-
-}
+  httpre.open("GET","http://localhost/app-messagerie/backend/saisie.php");
+}*/
