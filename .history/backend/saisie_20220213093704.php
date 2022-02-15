@@ -1,9 +1,0 @@
-<?php
-if(isset($_POST['name'])){
-$name=$_POST['name'];
-$conte=$_POST['conte'];
-$_conx=mysqli_connect("localhost","root","","message");
-$sql="INSERT INTO 'message'('name','conte') VALUES ('$name','$conte');";
-$_result=mysqli_query($_conx,$sql);
-}
-?>

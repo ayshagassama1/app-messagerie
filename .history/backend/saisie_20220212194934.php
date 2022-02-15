@@ -1,3 +1,0 @@
-<?php
-$
-json_encode

@@ -1,4 +1,6 @@
 function saisie(id) {
+	//event.preventDefault();
+	//let form=document.getElementById("form-"+id)
 	var contenue = document.getElementById("floatingInput" + id).value;
 	const event = new Date();
 	let mydate = event.toISOString();
