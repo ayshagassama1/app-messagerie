@@ -4,24 +4,11 @@
 
 echo($strJsonFileContents);*/ // print array
 
-header('Content-Type:application/json');
+require "configMsgs.php";
 
-function connectionBD()
-{
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=messagerie;charset=utf8', 'root', '');
-    }
-    catch (Exception $e)
-    {
-            die('Erreur : ' . $e->getMessage());
-    }
-    return $bdd;
-}
-
-$bdd = connectionBD();
-$query = $bdd->prepare('SELECT * FROM message WHERE destinataire = 2 OR origine = 2');
-$query->execute();
+//les messages où l'utilisateur connecté est l'origine ou le destinataire ou ceux envoyés dans le groupe
+$query = $bdd->prepare('SELECT destinataire, message.id, contenu, origine, nom, prenom, date FROM message, utilisateur WHERE utilisateur.id = message.origine and (destinataire = ? OR origine = ? OR destinataire = 1)');
+$query->execute(array($idUser, $idUser));
 $messages = array();
 while($reponse = $query->fetch())
 {
@@ -30,14 +17,14 @@ while($reponse = $query->fetch())
         "dest" => $reponse["destinataire"],
         "contenu" => $reponse["contenu"],
         "origine" => $reponse["origine"],
-        "date" => $reponse["date"]
+        "date" => $reponse["date"],
+        "nom" => $reponse["nom"],
+        "prenom" => $reponse["prenom"],
     );
     array_push($messages, json_encode($user));
 }
 
-echo(json_encode(array("messages"=>$messages))); // print array
-if(isset($_POST['id'])){
-    echo $_POST['id'];
-}
+echo(json_encode(array("messages"=>$messages))); 
+
 
 

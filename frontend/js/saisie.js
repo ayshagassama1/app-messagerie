@@ -1,5 +1,5 @@
 function saisie(id){
-  var contenue=document.getElementById("floatingInput").value;
+  var contenue=document.getElementById("floatingInput" + id).value;
   const event = new Date();
   let mydate = event.toISOString();
   console.log(mydate);

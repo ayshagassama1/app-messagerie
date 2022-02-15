@@ -1,23 +1,12 @@
 <?php
 
+require "configMsgs.php";
+
 header('Content-Type:application/json');
 
-function connectionBD()
-{
-    try
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=messagerie;charset=utf8', 'root', '');
-    }
-    catch (Exception $e)
-    {
-            die('Erreur : ' . $e->getMessage());
-    }
-    return $bdd;
-}
-
-$bdd = connectionBD();
-$query = $bdd->prepare('SELECT * FROM utilisateur WHERE id != 1');
-$query->execute();
+//tous les utilisateur sauf le groupe (c'est lui qui a l'i 1)
+$query = $bdd->prepare('SELECT * FROM utilisateur WHERE id != 1 and id != ?');
+$query->execute(array($idUser));
 $utilisateur = array();
 while($reponse = $query->fetch())
 {
