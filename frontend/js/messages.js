@@ -1,32 +1,33 @@
 let listeUtilisateurs;
 let listeMsgs;
 let idUser;
+let nomUser;
 let listeContacts;
 let i = 0;
+let refresh;
+
 function initialisation() {
 	let xhr = new XMLHttpRequest();
+	let infosUser;
 	xhr.onreadystatechange = () => {
 		if (xhr.readyState == 4) {
-			idUser = xhr.responseText;
+			infosUser = xhr.responseText;
 		}
 	};
 	xhr.open("post", "http://localhost/app-messagerie/backend/configMsgs.php", false);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("getIdUser=1");
-
+	xhr.send("getInfosUser=1");
+	infosUser = JSON.parse(infosUser);
+	idUser = infosUser.id;
+	nomUser = infosUser.prenom + infosUser.nom;
+	setInterval(test(), 1000);
 	fetch("http://localhost/app-messagerie/backend/utilisateurs.php")
 		.then((res) => res.json())
 		.then((res) => {
 			listeUtilisateurs = res;
 			rechercheUtilisateur();
 			creerTabs(listeUtilisateurs);
-			fetch("http://localhost/app-messagerie/backend/messages.php")
-				.then((res) => res.json())
-				.then((res) => {
-					listeMsgs = res;
-					afficherMessages();
-					setInterval(refreshInfos(), 100);
-				});
+			recupererMsgs();
 		});
 	getListContacts();
 }
@@ -331,18 +332,39 @@ function getListContacts() {
 	});
 }
 
+function recupererMsgs() {
+	fetch("http://localhost/app-messagerie/backend/messages.php")
+		.then((res) => res.json())
+		.then((res) => {
+			listeMsgs = res;
+			afficherMessages();
+		});
+}
+
 function refreshInfos() {
+	console.log(i++);
+
+	console.log("debut recupération liste contacts");
 	getListContacts();
+	console.log("fin recupération liste contacts");
+	console.log("debut creation tab");
 	creerTabs(listeContacts);
-	afficherMessages();
+	console.log("fin creation tab");
+	console.log("debut affichage msgs");
+	recupererMsgs();
+	console.log("fin affichage msgs");
 	console.log("refreshing" + i);
 	i++;
 }
 
+function test() {
+	console.log(i++);
+}
+
 $(document).ready(() => {
 	initialisation();
-
 	//while (!listeContacts || !idUser || !listeMsgs);
 	//if (listeContacts && idUser && listeMsgs) setInterval(refreshInfos(), 1);
 });
+//refresh();
 //setInterval(() => console.log(i++), 100);

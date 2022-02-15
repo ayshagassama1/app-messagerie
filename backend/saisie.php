@@ -1,5 +1,5 @@
 <?php
-require "configMsgs.php"
+require "configMsgs.php";
 $_conx=mysqli_connect("localhost","root","","messagerie");
 if(isset($_POST['destinataire']) && isset($_POST['contenu']) && isset($_POST['date'])){
 $name=$_POST['destinataire'];
