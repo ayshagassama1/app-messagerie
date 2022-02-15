@@ -29,6 +29,7 @@ function verifUtilisateur() {
 function initialisation() {
 	let xhr = new XMLHttpRequest();
 	let infosUser;
+	let avatar = document.getElementById("avatar");
 	xhr.onreadystatechange = () => {
 		if (xhr.readyState == 4) {
 			infosUser = xhr.responseText;
@@ -40,6 +41,11 @@ function initialisation() {
 	infosUser = JSON.parse(infosUser);
 	idUser = infosUser.id;
 	nomUser = infosUser.prenom + infosUser.nom;
+
+	avatar.setAttribute(
+		"src",
+		"https://avatars.dicebear.com/api/micah/" + infosUser.prenom + infosUser.nom + ".svg"
+	);
 
 	fetch("http://localhost/app-messagerie/backend/utilisateurs.php")
 		.then((res) => res.json())
