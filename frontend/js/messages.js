@@ -6,6 +6,26 @@ let listeContacts;
 let i = 0;
 let refresh;
 
+//vérifie si l'utilisateur est normalement connecté ou s'il a directement utilisé le lien de la page
+//sans se connecter
+function verifUtilisateur() {
+	let xhr = new XMLHttpRequest();
+	let idUser;
+	xhr.onreadystatechange = () => {
+		if (xhr.readyState == 4) {
+			idUser = xhr.responseText;
+		}
+	};
+	xhr.open("post", "http://localhost/app-messagerie/backend/configMsgs.php", false);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("getIdUser=1");
+
+	if (idUser == 0) {
+		console.log(idUser);
+		document.location.replace("index.html");
+	}
+}
+
 function initialisation() {
 	let xhr = new XMLHttpRequest();
 	let infosUser;
@@ -342,6 +362,7 @@ function recupererMsgs() {
 }
 
 $(document).ready(() => {
+	verifUtilisateur();
 	initialisation();
 	//on récupère la liste des "contacts" puis on crée les tabs qui n'ont pas été créé et enfin on affiche
 	//les messages dans les tab correspondants chaque 1 seconde
