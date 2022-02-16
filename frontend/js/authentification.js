@@ -3,7 +3,26 @@ function register() {
 	let nom = document.getElementById("nom").value;
 	let email = document.getElementById("email").value;
 	let mdp = document.getElementById("mdp").value;
-	// let cmdp =  document.getElementById('cmdp').value;
+	let cmdp = document.getElementById("cmdp").value;
+
+	if (mdp != cmdp) {
+		let alertDiv = document.createElement("div");
+		let alertButton = document.createElement("button");
+		alertDiv.setAttribute("class", "alert alert-warning alert-dismissible fade show");
+		alertDiv.setAttribute("role", "alert");
+		alertDiv.textContent = "Les mots de passe ne correspondent pas";
+
+		alertButton.setAttribute("type", "button");
+		alertButton.setAttribute("class", "btn-close");
+		alertButton.setAttribute("data-bs-dismiss", "alert");
+		alertButton.setAttribute("aria-label", "Close");
+
+		alertDiv.appendChild(alertButton);
+		document.getElementById("ins").prepend(alertDiv);
+
+		return;
+	}
+
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
