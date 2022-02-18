@@ -40,52 +40,65 @@
 				</div>
 			</div>
 		</nav>
-		
+
 		<div>
-			
 			<div class="formBloc">
-				
 				<div class="myForm">
-					<p ><em id="ins"></em></p>
+					<p><em id="ins"></em></p>
 					<form id="formId" method="post">
 						<h3 class="text-center">Inscription</h3>
 						<div class="form-group mb-3">
-							<label for="">Prénom</label>
+							<label for="prenom">Prénom</label>
 							<input
 								type="text"
 								class="form-control"
 								id="prenom"
 								name="prenom"
 								placeholder="nana"
+								required
 							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="">Nom</label>
+							<label for="nom">Nom</label>
 							<input
 								id="nom"
 								name="nom"
 								class="form-control"
 								type="text"
 								placeholder="diaby"
+								required
 							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="">Email</label>
+							<label for="email">Email</label>
 							<input
 								id="email"
 								name="email"
 								class="form-control"
 								type="email"
 								placeholder="nana@diaby.com"
+								required
 							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="">Mot de passe</label>
-							<input id="mdp" name="mdp" class="form-control" type="password" />
+							<label for="mdp">Mot de passe</label>
+							<input
+								id="mdp"
+								name="mdp"
+								class="form-control"
+								type="password"
+								required
+							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="">Confirmer mot de passe</label>
-							<input id="cmdp" name="cmdp" class="form-control" type="password" />
+							<label for="cmdp">Confirmer mot de passe</label>
+							<input
+								id="cmdp"
+								name="cmdp"
+								class="form-control"
+								type="password"
+								required
+							/>
 						</div>
 						<div class="form-group mb-3" id="password">
 							<input

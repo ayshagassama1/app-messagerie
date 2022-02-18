@@ -159,6 +159,7 @@ function creerTabPane(id, email, nom, prenom) {
 	//début création formulaire envoie
 	formControl.setAttribute("type", "text");
 	formControl.setAttribute("class", "form-control");
+	formControl.setAttribute("required", "required");
 	formControl.setAttribute("id", "floatingInput" + id);
 	formControl.setAttribute("placeholder", "saisissez votre message ici");
 

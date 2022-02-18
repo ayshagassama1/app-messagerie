@@ -14,8 +14,8 @@ return $bdd;
 
 function inscription($prenom, $nom, $email, $pass) {
     $bdd = connexionBD();
-    $req = $bdd->prepare('SELECT * FROM utilisateur WHERE  pass=?');
-    $req->execute(array(htmlspecialchars($pass)));
+    $req = $bdd->prepare('SELECT * FROM utilisateur WHERE  email=?');
+    $req->execute(array(htmlspecialchars($email)));
     $reponse = $req->fetch();
     if($reponse){
         return 2;

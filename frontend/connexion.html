@@ -47,17 +47,18 @@
 					<form onSubmit="login()" method="post">
 						<h3 class="text-center">Connexion</h3>
 						<div class="form-group mb-3">
-							<label for="">Email</label>
+							<label for="email">Email</label>
 							<input
 								id="email"
 								name="email"
 								class="form-control"
 								type="email"
 								placeholder="nana@diaby.com"
+								required
 							/>
 						</div>
 						<div class="form-group mb-3">
-							<label for="">Mot de passe</label>
+							<label for="mdp">Mot de passe</label>
 							<input id="mdp" name="mdp" class="form-control" type="password" />
 						</div>
 						<div class="form-group mb-3" id="password">
@@ -65,6 +66,7 @@
 								type="submit"
 								class="form-control text-white mySubmit"
 								value="Se connecter"
+								required
 							/>
 						</div>
 						<p class="text-center">
