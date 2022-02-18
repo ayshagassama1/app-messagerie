@@ -14,16 +14,22 @@ return $bdd;
 
 function inscription($prenom, $nom, $email, $pass) {
     $bdd = connexionBD();
-    $req = $bdd->prepare('INSERT INTO utilisateur (prenom,nom,email,pass) VALUES(?,?,?,?)');
-    $req->execute(array(htmlspecialchars($prenom),htmlspecialchars($nom),htmlspecialchars($email),htmlspecialchars($pass))); 
-    
-    if($req)
-    {
-        echo 'Inscription réussi';
-        return 1;
+    $req = $bdd->prepare('SELECT * FROM utilisateur WHERE  pass=?');
+    $req->execute(array(htmlspecialchars($pass)));
+    $reponse = $req->fetch();
+    if($reponse){
+        return 2;
+    }else{
+        $req = $bdd->prepare('INSERT INTO utilisateur (prenom,nom,email,pass) VALUES(?,?,?,?)');
+        $req->execute(array(htmlspecialchars($prenom),htmlspecialchars($nom),htmlspecialchars($email),htmlspecialchars($pass))); 
+        //$reponse = $req->fetch();
+        if($req)
+        {
+            return 1;
+        } else{
+            return 0;
+        }
     }
-    echo 'Erreur de traitement';
-    return 0;
 }
 
 function connexion($email, $pass){

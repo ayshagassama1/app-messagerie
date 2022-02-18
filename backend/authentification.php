@@ -6,7 +6,14 @@ require 'config.php';
 if(isset($_POST['inscrire']))
 {
 
-    inscription($_POST['prenom'], $_POST['nom'], $_POST['email'], $_POST['mdp']);
+    $reponse = inscription($_POST['prenom'], $_POST['nom'], $_POST['email'], $_POST['mdp']);
+    if($reponse != 1){
+        echo $reponse;
+    }
+    else {
+        $_SESSION['id'] = $reponse;
+        echo $reponse;
+    }
 }
 
 //login
