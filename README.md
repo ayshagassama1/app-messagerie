@@ -1,14 +1,12 @@
 # app-messagerie
 Instant messaging app with "pure" HTML, CSS, JavaScript, AJAX and PHP
 ## SETUP
-=======
 
 * create a MySQL database named "messagerie"
 * place the app in /xampp/htdocs if you are using XAMPP or in /wamp/www if you are using WAMP/Laragon
 * Start MySQL and Apache servers
 
 ## USAGE
-=======
 
 * go to [http://localhost](http://localhost)
 * sign in to the plateform
@@ -16,7 +14,6 @@ Instant messaging app with "pure" HTML, CSS, JavaScript, AJAX and PHP
 **Screenshots of the app can be found in the report.pdf file**
 
 ## TECH
-=======
 
 * MySQL
 * JQuery
@@ -31,12 +28,10 @@ Instant messaging app with "pure" HTML, CSS, JavaScript, AJAX and PHP
 * DOM API
 
 ## CREDIT
-=======
 * [https://undraw.co/illustrations](https://undraw.co/illustrations) : for the illustrations
 * [https://avatars.dicebear.com/](https://avatars.dicebear.com/) : for avatars
 
 ## CONTRIBUTORS
-=======
 |Github Profile|Email|     
 |----|-----|
 |[SalySam](https://github.com/SalySam)|samake.saly@ugb.edu.sn|
