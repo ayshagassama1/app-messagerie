@@ -3,7 +3,8 @@ Instant messaging app with "pure" HTML, CSS, JavaScript, AJAX and PHP
 ## SETUP
 
 * create a MySQL database named "messagerie"
-* place the app in /xampp/htdocs if you are using XAMPP or in /wamp/www if you are using WAMP/Laragon
+* import the `messagerie.sql` file into the database
+* place the project in /xampp/htdocs if you are using XAMPP server or in /wamp/www if you are using WAMP/Laragon
 * Start MySQL and Apache servers
 
 ## USAGE
